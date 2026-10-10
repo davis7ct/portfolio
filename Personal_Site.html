@@ -1,0 +1,462 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Christian J. Davis | Mechanical Engineering & Prototyping</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg: #ffffff;
+      --bg-alt: #f8fafc;
+      --text: #0f172a;
+      --text-muted: #64748b;
+      --border: #e2e8f0;
+      --accent: #1e293b;
+      --accent-hover: #0f172a;
+      --card-bg: #ffffff;
+      --tag-bg: #f1f5f9;
+      --tag-text: #334155;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    html {
+      scroll-behavior: smooth;
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+      background-color: var(--bg);
+      color: var(--text);
+      line-height: 1.6;
+    }
+
+    nav {
+      position: sticky;
+      top: 0;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 1.25rem 2rem;
+      background: rgba(255, 255, 255, 0.9);
+      backdrop-filter: blur(10px);
+      border-bottom: 1px solid var(--border);
+      z-index: 100;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    .brand {
+      font-weight: 700;
+      font-size: 1.1rem;
+      color: var(--text);
+      text-decoration: none;
+      letter-spacing: -0.02em;
+    }
+
+    .nav-links {
+      display: flex;
+      list-style: none;
+      gap: 1.5rem;
+    }
+
+    .nav-links a {
+      color: var(--text-muted);
+      text-decoration: none;
+      font-size: 0.925rem;
+      font-weight: 500;
+      transition: color 0.2s ease;
+    }
+
+    .nav-links a:hover {
+      color: var(--text);
+    }
+
+    .container {
+      max-width: 1000px;
+      margin: 0 auto;
+      padding: 4rem 1.5rem;
+    }
+
+    /* Hero Section */
+    .hero {
+      padding: 6rem 1.5rem 5rem 1.5rem;
+      max-width: 1000px;
+      margin: 0 auto;
+    }
+
+    .eyebrow {
+      display: inline-block;
+      font-size: 0.875rem;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      color: var(--text-muted);
+      margin-bottom: 1rem;
+    }
+
+    .hero h1 {
+      font-size: 2.75rem;
+      font-weight: 700;
+      letter-spacing: -0.03em;
+      line-height: 1.2;
+      margin-bottom: 1.5rem;
+      color: var(--text);
+    }
+
+    .hero p {
+      font-size: 1.2rem;
+      color: var(--text-muted);
+      max-width: 720px;
+      margin-bottom: 2rem;
+    }
+
+    .cta-group {
+      display: flex;
+      gap: 1rem;
+      flex-wrap: wrap;
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      padding: 0.75rem 1.5rem;
+      font-size: 0.925rem;
+      font-weight: 600;
+      border-radius: 6px;
+      text-decoration: none;
+      transition: all 0.2s ease;
+    }
+
+    .btn-primary {
+      background: var(--accent);
+      color: #ffffff;
+    }
+
+    .btn-primary:hover {
+      background: var(--accent-hover);
+    }
+
+    .btn-secondary {
+      background: var(--bg-alt);
+      color: var(--text);
+      border: 1px solid var(--border);
+    }
+
+    .btn-secondary:hover {
+      background: var(--border);
+    }
+
+    /* Section Headers */
+    .section-title {
+      font-size: 1.75rem;
+      font-weight: 700;
+      letter-spacing: -0.02em;
+      margin-bottom: 2rem;
+      border-bottom: 1px solid var(--border);
+      padding-bottom: 0.75rem;
+    }
+
+    /* Cards & Timeline */
+    .timeline {
+      display: flex;
+      flex-direction: column;
+      gap: 2rem;
+    }
+
+    .timeline-item {
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 1.75rem;
+      background: var(--card-bg);
+      transition: border-color 0.2s ease;
+    }
+
+    .timeline-item:hover {
+      border-color: #cbd5e1;
+    }
+
+    .item-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      margin-bottom: 0.75rem;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+    }
+
+    .item-header h3 {
+      font-size: 1.2rem;
+      font-weight: 600;
+      color: var(--text);
+    }
+
+    .item-company {
+      font-weight: 500;
+      color: var(--text-muted);
+      font-size: 0.95rem;
+    }
+
+    .item-date {
+      font-size: 0.875rem;
+      color: var(--text-muted);
+      font-weight: 500;
+    }
+
+    .timeline-item ul {
+      margin-left: 1.25rem;
+      margin-top: 0.75rem;
+      color: #334155;
+    }
+
+    .timeline-item li {
+      margin-bottom: 0.5rem;
+      font-size: 0.95rem;
+    }
+
+    /* Projects Grid */
+    .projects-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 1.5rem;
+    }
+
+    .project-card {
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 1.5rem;
+      background: var(--card-bg);
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
+
+    .project-card h3 {
+      font-size: 1.15rem;
+      font-weight: 600;
+      margin-bottom: 0.5rem;
+    }
+
+    .project-card p {
+      font-size: 0.925rem;
+      color: var(--text-muted);
+      margin-bottom: 1.25rem;
+    }
+
+    /* Tags */
+    .tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+    }
+
+    .tag {
+      background: var(--tag-bg);
+      color: var(--tag-text);
+      font-size: 0.8rem;
+      font-weight: 500;
+      padding: 0.3rem 0.65rem;
+      border-radius: 4px;
+      border: 1px solid var(--border);
+    }
+
+    /* Contact Links */
+    .contact-list {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 0.75rem;
+    }
+
+    .contact-list a {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.75rem;
+      color: var(--text);
+      text-decoration: none;
+      font-weight: 500;
+      font-size: 1rem;
+    }
+
+    .contact-list a:hover {
+      text-decoration: underline;
+    }
+
+    footer {
+      border-top: 1px solid var(--border);
+      text-align: center;
+      padding: 2.5rem 1.5rem;
+      font-size: 0.875rem;
+      color: var(--text-muted);
+      margin-top: 4rem;
+    }
+
+    @media (max-width: 640px) {
+      .hero h1 { font-size: 2rem; }
+      .nav-links { display: none; }
+    }
+  </style>
+</head>
+<body>
+
+  <nav>
+    <a href="#hero" class="brand">Christian J. Davis</a>
+    <ul class="nav-links">
+      <li><a href="#about">About</a></li>
+      <li><a href="#experience">Experience</a></li>
+      <li><a href="#projects">Projects</a></li>
+      <li><a href="#skills">Skills</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ul>
+  </nav>
+
+  <header id="hero" class="hero">
+    <span class="eyebrow">Mechanical Engineering & Prototyping</span>
+    <h1>Bridging precision CAD design with hands-on manufacturing and validation.</h1>
+    <p>Mechanical Engineering student at the University of Cincinnati with hands-on co-op experience across die-cast maturation, plastics mold design, and functional rapid prototyping.</p>
+    <div class="cta-group">
+      <a href="#experience" class="btn btn-primary">View Experience</a>
+      <a href="#projects" class="btn btn-secondary">Explore Projects</a>
+      <a href="resume.pdf" download class="btn btn-secondary">Download Resume (PDF)</a>
+    </div>
+  </header>
+
+  <main class="container">
+    <section id="about" style="margin-bottom: 5rem;">
+      <h2 class="section-title">About</h2>
+      <p style="margin-bottom: 1rem; font-size: 1.05rem; color: #334155;">
+        My engineering philosophy centers on first-principles execution: understanding tolerances, structural mechanics, and material behavior before components hit the physical floor.
+      </p>
+      <p style="font-size: 1.05rem; color: #334155;">
+        Through full-time engineering co-ops at DENSO and Honda, I have applied GD&T, CAD surfacing, and quality engineering loops to high-volume manufacturing environments. Outside the office, I design functional 3D-printed assemblies, tune chassis dynamics, and build microcontroller DAQ systems.
+      </p>
+    </section>
+
+    <section id="experience" style="margin-bottom: 5rem;">
+      <h2 class="section-title">Engineering Experience</h2>
+      <div class="timeline">
+        <div class="timeline-item">
+          <div class="item-header">
+            <div>
+              <h3>Plastics Die & Mold Design Co-op</h3>
+              <div class="item-company">Honda Marysville Auto Plant</div>
+            </div>
+            <span class="item-date">Fall 2026</span>
+          </div>
+          <ul>
+            <li>Engineered injection mold tooling geometries and die modifications utilizing Siemens NX.</li>
+            <li>Collaborated with tooling specialists to resolve parting line deviations and parting surface defects.</li>
+            <li>Evaluated draft angles, shut-off interfaces, and cooling channel layouts for production exterior trim.</li>
+          </ul>
+        </div>
+
+        <div class="timeline-item">
+          <div class="item-header">
+            <div>
+              <h3>Die-Cast Maturation & Quality Co-op</h3>
+              <div class="item-company">Honda Anna Engine Plant</div>
+            </div>
+            <span class="item-date">Spring 2026</span>
+          </div>
+          <ul>
+            <li>Diagnosed root-cause casting flaws, porosity, and thermal defects in high-pressure aluminum die-cast engine blocks.</li>
+            <li>Implemented PDCA quality cycles to validate mold life improvements and shot sleeve parameters.</li>
+            <li>Conducted coordinate measuring machine (CMM) data analysis and dimensional verification against tight GD&T limits.</li>
+          </ul>
+        </div>
+
+        <div class="timeline-item">
+          <div class="item-header">
+            <div>
+              <h3>Mechanical Engineering Co-op</h3>
+              <div class="item-company">DENSO Manufacturing</div>
+            </div>
+            <span class="item-date">Fall 2024 – Summer 2025</span>
+          </div>
+          <ul>
+            <li>Supported high-volume automotive powertrain assembly processes and automated manufacturing cell maintenance.</li>
+            <li>Designed custom alignment fixtures and end-of-arm tooling components to streamline cycle times.</li>
+            <li>Conducted statistical process control (SPC) studies and capability analyses to eliminate line bottlenecks.</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <section id="projects" style="margin-bottom: 5rem;">
+      <h2 class="section-title">Key Projects</h2>
+      <div class="projects-grid">
+        <div class="project-card">
+          <div>
+            <h3>Custom Chassis Suspension Geometry</h3>
+            <p>Designed and fabricated double-wishbone suspension arms, shock perches, and custom hub assemblies using engineering-grade PETG and carbon-fiber filaments. Validated kinematics and impact compliance under dynamic loads.</p>
+          </div>
+          <div class="tags">
+            <span class="tag">CAD Modeling</span>
+            <span class="tag">Bambu P2S</span>
+            <span class="tag">Kinematics</span>
+          </div>
+        </div>
+
+        <div class="project-card">
+          <div>
+            <h3>Vehicle Dynamics & Chassis Tuning</h3>
+            <p>Analyzed roll stiffness distribution and lateral weight transfer dynamics on a road chassis. Designed, test-fitted, and installed an uprated 22mm rear stabilizer bar assembly, measuring turn-in response and understeer reduction.</p>
+          </div>
+          <div class="tags">
+            <span class="tag">Vehicle Dynamics</span>
+            <span class="tag">Chassis Tuning</span>
+            <span class="tag">Hands-on Mech</span>
+          </div>
+        </div>
+
+        <div class="project-card">
+          <div>
+            <h3>Mechatronics & Embedded DAQ</h3>
+            <p>Configured microcontrollers using PlatformIO in VS Code to interface with IMU sensors, telemetry logging, and pulse-width modulated servo steering loops for real-time sensor feedback and motion control.</p>
+          </div>
+          <div class="tags">
+            <span class="tag">ESP32 / C++</span>
+            <span class="tag">PlatformIO</span>
+            <span class="tag">Sensors & DAQ</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="skills" style="margin-bottom: 5rem;">
+      <h2 class="section-title">Technical Skills</h2>
+      <div class="tags" style="gap: 0.75rem;">
+        <span class="tag">Siemens NX</span>
+        <span class="tag">Fusion 360</span>
+        <span class="tag">GD&T</span>
+        <span class="tag">Die & Mold Design</span>
+        <span class="tag">Die Casting Quality</span>
+        <span class="tag">MATLAB</span>
+        <span class="tag">Additive Manufacturing (PLA, PETG, ABS, CF)</span>
+        <span class="tag">Bambu Lab P2S</span>
+        <span class="tag">Root Cause Analysis (PDCA)</span>
+        <span class="tag">Vehicle Dynamics</span>
+        <span class="tag">PlatformIO / C++</span>
+      </div>
+    </section>
+
+    <section id="contact">
+      <h2 class="section-title">Contact</h2>
+      <ul class="contact-list">
+        <li><a href="mailto:davis7ct@mail.uc.edu">Email: davis7ct@mail.uc.edu</a></li>
+        <li><a href="https://linkedin.com" target="_blank" rel="noopener">LinkedIn Profile</a></li>
+        <li><a href="resume.pdf" download>Download Formal Resume (PDF)</a></li>
+      </ul>
+    </section>
+  </main>
+
+  <footer>
+    <p>&copy; 2026 Christian J. Davis. Hosted with GitHub Pages.</p>
+  </footer>
+
+</body>
+</html>
